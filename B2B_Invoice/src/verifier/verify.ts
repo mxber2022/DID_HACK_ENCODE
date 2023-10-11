@@ -16,7 +16,7 @@ const didKey = new KeyDIDMethod();
 const didEthr = new EthrDIDMethod(ethrProvider);
 const jwtService = new JWTService();
 
-const verification = async () => {
+const verification = async (param: any) => {
   // Instantiating the didResolver
   const didResolver = getSupportedResolvers([didKey, didEthr]);
 
@@ -49,6 +49,11 @@ const verification = async () => {
 
           const vcVerified = await verifyDIDs(vcJwt, didResolver);
           console.log(`\nVerification status: ${vcVerified}\n`);
+
+          console.log("Invoice data: ", param)
+
+          console.log("Invoice is sucessfully generated", param)
+
         } catch (error) {
           console.log(error);
         }
@@ -72,5 +77,5 @@ const verification = async () => {
     console.log("\nPlease refer to issuer scripts to generate and sign a VP\n");
   }
 };
-
-verification();
+const commandLineParam = process.argv[2];
+verification(commandLineParam);
