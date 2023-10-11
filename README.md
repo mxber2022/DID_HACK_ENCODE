@@ -46,10 +46,6 @@ To use this system for B2B invoice payment prevention with Verifiable Credential
 
 6. **Prevent Fake Invoice Payments**: By consistently using Verifiable Credentials, your business can significantly reduce the risk of falling victim to B2B fake invoice payment fraud.
 
-## Documentation
-
-For detailed documentation on how to use this system, please refer to the [Wiki](wiki/).
-
 ## Contributing
 
 We welcome contributions from the open-source community. Feel free to fork this repository, make improvements, and submit a pull request. Please follow our [Contribution Guidelines](CONTRIBUTING.md).
@@ -66,7 +62,7 @@ This system provides an additional layer of security to prevent B2B fake invoice
 
 By implementing this system, businesses can enhance their defenses against B2B fake invoice payment fraud and protect their financial interests. Verifiable Credentials offer a secure and transparent way to verify the authenticity of invoices and suppliers, reducing the risk of falling victim to fraudulent schemes.
 
-
+## VC Data
 
 Generating a signed verifiable Credential of type PROOF_OF_NAME
 
