@@ -1,4 +1,3 @@
-// holder
 import {
   EthrDIDMethod,
   KeyDIDMethod,

@@ -1,31 +1,25 @@
-// ISSUER
-import { KeyDIDMethod, createAndSignCredentialJWT } from "@jpmorganchase/onyx-ssi-sdk";
+import { KeyDIDMethod, createCredential } from "@jpmorganchase/onyx-ssi-sdk";
 import { camelCase } from "lodash";
 import path from "path";
-import { HOLDER_EDDSA_PRIVATE_KEY, ISSUER_EDDSA_PRIVATE_KEY, VC_DIR_PATH, } from "../../config";
+import {
+  HOLDER_EDDSA_PRIVATE_KEY,
+  ISSUER_EDDSA_PRIVATE_KEY,
+  VC_DIR_PATH,
+} from "../../config";
 import { privateKeyBufferFromString } from "../utils/convertions";
 import { writeToFile } from "../utils/writer";
 
 const createVc = async () => {
   const didKey = new KeyDIDMethod();
 
-  /* 
-    Issue issuer key
-  */
   const issuerDidWithKeys = await didKey.generateFromPrivateKey(
     privateKeyBufferFromString(ISSUER_EDDSA_PRIVATE_KEY)
   );
 
-  /* 
-    Issue Holder key
-  */
   const holderDidWithKeys = await didKey.generateFromPrivateKey(
     privateKeyBufferFromString(HOLDER_EDDSA_PRIVATE_KEY)
   );
 
-  /* 
-    Key require for VC (Verifiable credential)
-  */
   const vcDidKey = (await didKey.create()).did;
 
   const credentialType = "PROOF_OF_NAME";
@@ -39,24 +33,21 @@ const createVc = async () => {
     id: vcDidKey,
   };
 
-  console.log(
-    `\nGenerating a signed verifiable Credential of type ${credentialType}\n`
-  );
+  console.log(`\nGenerating Verifiable Credential of type ${credentialType}\n`);
 
-  const signedVc = await createAndSignCredentialJWT(
-    issuerDidWithKeys,
+  const vc = createCredential(
+    issuerDidWithKeys.did,
     holderDidWithKeys.did,
     subjectData,
     [credentialType],
     additionalParams
-  ); 
+  );
 
-  console.log(signedVc);
+  console.log(JSON.stringify(vc, null, 2));
 
-  console.log("\nSaving signed VC JWT\n");
   writeToFile(
-    path.resolve(VC_DIR_PATH, `${camelCase(credentialType)}.jwt`),
-    signedVc
+    path.resolve(VC_DIR_PATH, `${camelCase(credentialType)}.json`),
+    JSON.stringify(vc, null, 2)
   );
 };
 

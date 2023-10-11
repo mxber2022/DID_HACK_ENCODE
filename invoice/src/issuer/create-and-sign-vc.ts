@@ -1,31 +1,25 @@
-// ISSUER
 import { KeyDIDMethod, createAndSignCredentialJWT } from "@jpmorganchase/onyx-ssi-sdk";
 import { camelCase } from "lodash";
 import path from "path";
-import { HOLDER_EDDSA_PRIVATE_KEY, ISSUER_EDDSA_PRIVATE_KEY, VC_DIR_PATH, } from "../../config";
+import {
+  HOLDER_EDDSA_PRIVATE_KEY,
+  ISSUER_EDDSA_PRIVATE_KEY,
+  VC_DIR_PATH,
+} from "../../config";
 import { privateKeyBufferFromString } from "../utils/convertions";
 import { writeToFile } from "../utils/writer";
 
 const createVc = async () => {
   const didKey = new KeyDIDMethod();
 
-  /* 
-    Issue issuer key
-  */
   const issuerDidWithKeys = await didKey.generateFromPrivateKey(
     privateKeyBufferFromString(ISSUER_EDDSA_PRIVATE_KEY)
   );
 
-  /* 
-    Issue Holder key
-  */
   const holderDidWithKeys = await didKey.generateFromPrivateKey(
     privateKeyBufferFromString(HOLDER_EDDSA_PRIVATE_KEY)
   );
 
-  /* 
-    Key require for VC (Verifiable credential)
-  */
   const vcDidKey = (await didKey.create()).did;
 
   const credentialType = "PROOF_OF_NAME";
@@ -49,7 +43,7 @@ const createVc = async () => {
     subjectData,
     [credentialType],
     additionalParams
-  ); 
+  );
 
   console.log(signedVc);
 
