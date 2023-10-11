@@ -9,7 +9,7 @@ import { writeToFile } from "../utils/writer";
 const createVc = async () => {
   const didKey = new KeyDIDMethod();
 
-  /* 
+  /*  
     Issue issuer key
   */
   const issuerDidWithKeys = await didKey.generateFromPrivateKey(
