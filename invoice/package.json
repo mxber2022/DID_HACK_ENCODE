@@ -8,24 +8,27 @@
     "url": "https://github.com/jpmorganchase/onyx-ssi-sdk-examples"
   },
   "scripts": {
-    "create:issuer:did:key": "ts-node ./src/issuer/create-issuer-did-key.ts",
-    "create:issuer:did:ethr": "ts-node ./src/issuer/create-issuer-did-ethr.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "create:keypair": "ts-node ./src/holder/create-keypair.ts",
-    "create:sign:vc": "ts-node ./src/issuer/create-and-sign-vc.ts",
-    "create:sign:vp": "ts-node ./src/holder/create-and-sign-vp.ts",
+    "create:issuer:did:key": "ts-node ./src/issuer/create-issuer-did.ts",
+    "create:issuer:did:ethr": "ts-node ./src/issuer/create-issuer-ethr.ts",
     "create:vc": "ts-node ./src/issuer/create-vc.ts",
     "create:vc:did:ethr": "ts-node ./src/issuer/create-vc-did-ethr.ts",
     "create:vc:schema:validation": "ts-node ./src/issuer/create-vc-schema-validation.ts",
     "create:vc:with:additional:params": "ts-node ./src/issuer/create-vc-with-additional-params.ts",
-    "create:vp": "ts-node ./src/holder/create-vp-from-vc.ts",
-    "create:vp:with:additional:params": "ts-node ./src/holder/create-vp-with-additional-params.ts",
-    "deactivate:vc": "ts-node ./src/issuer/deactivate-vc.ts",
     "sign:vc": "ts-node ./src/issuer/sign-vc.ts",
+    "create:sign:vc": "ts-node ./src/issuer/create-and-sign-vc.ts",
+    "deactivate:vc": "ts-node ./src/issuer/deactivate-vc.ts",
+    "create:vp": "ts-node ./src/holder/create-vp-from-vc.ts",
+    "create:sign:vp": "ts-node ./src/holder/create-and-sign-vp.ts",
+    "create:vp:with:additional:params": "ts-node ./src/holder/create-vp-with-additional-params.ts",
     "sign:vp": "ts-node ./src/holder/sign-vp.ts",
     "verify": "ts-node ./src/verifier/verify.ts",
     "verify:dates": "ts-node ./src/verifier/verify-dates.ts",
     "verify:revocation:status": "ts-node ./src/verifier/verify-revocation-status.ts",
-    "verify:schema:validation": "ts-node ./src/verifier/verify-schema-validation.ts"
+    "verify:schema:validation": "ts-node ./src/verifier/verify-schema-validation.ts",
+    "claim": "ts-node ./src/hackathon-scripts/claim.ts",
+    "present": "ts-node ./src/hackathon-scripts/present-vc.ts"
   },
   "author": "",
   "devDependencies": {
@@ -40,6 +43,7 @@
     "@types/lodash": "^4.14.194",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.2",
+    "jsontokens": "^4.0.1",
     "lodash": "^4.17.21"
   }
 }
