@@ -15,10 +15,16 @@ const createVc = async () => {
     privateKeyBufferFromString(ISSUER_EDDSA_PRIVATE_KEY)
   );
 
+  /* 
+    Issue Holder key
+  */
   const holderDidWithKeys = await didKey.generateFromPrivateKey(
     privateKeyBufferFromString(HOLDER_EDDSA_PRIVATE_KEY)
   );
 
+  /* 
+    Key require for VC (Verifiable credential)
+  */
   const vcDidKey = (await didKey.create()).did;
 
   const credentialType = "PROOF_OF_NAME";
