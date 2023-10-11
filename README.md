@@ -4,7 +4,15 @@
 
 This repository provides a solution to combat B2B fake invoice payment fraud by leveraging Verifiable Credentials. B2B invoice fraud is a prevalent problem where businesses fall victim to fraudulent invoices, resulting in financial losses. Verifiable Credentials offer a secure and tamper-proof way to verify the authenticity of invoices, suppliers, and payment details.
 
-## Solution
+## Solution 
+
+Suppose business A wants to send payment invoice to business B. <br/>
+
+Business B issues verifiable credentials to Business A.<br/>
+
+Once VC is issued to business A, it verifies the VC issued.<br/>
+
+Once verification is successful business A is allowd to generate payment invoice.<br/>
 
 ### What Are Verifiable Credentials?
 
